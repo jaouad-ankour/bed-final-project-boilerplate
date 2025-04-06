@@ -5,8 +5,7 @@
   "prisma": {
     "seed": "node ./prisma/seed.js",
     "schema": "./prisma/schema.prisma"
-
- },
+  },
   "description": "Your REST API for managing bookings",
   "main": "src/index.js",
   "scripts": {
@@ -19,19 +18,17 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.5.0",
-    "@sentry/node": "^7.64.0",
+    "@sentry/node": "^9.10.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.1",
     "prisma": "^6.5.0",
     "uuid": "^9.0.0",
-    "winston": "^3.10.0"
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "newman": "^6.0.0",
-    "nodemon": "^3.0.1"
-  },
-  "engines": {
-    "node": ">=18 <19"
+    "nodemon": "^3.0.1",
+    "prettier": "^3.5.3"
   }
 }
