@@ -39,6 +39,7 @@ app.use(function onError(err, req, res, next) {
       .json("Your form is missing the required input fields");
   }
   if (err instanceof SyntaxError) {
+    console.log("error", err);
     return res.status(400).json("Something went wrong");
   }
 

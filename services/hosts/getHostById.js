@@ -7,6 +7,14 @@ const getHostById = async (id) => {
     where: {
       id,
     },
+    select: {
+      username: true,
+      email: true,
+      name: true,
+      aboutMe: true,
+      phoneNumber: true,
+      pictureUrl: true,
+    },
   });
 
   if (!host) {

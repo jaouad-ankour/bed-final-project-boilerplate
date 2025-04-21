@@ -3,7 +3,7 @@ import NotFoundError from "../../error/notFoundError.js";
 
 const deleteReviewById = async (id) => {
   const prisma = new PrismaClient();
-
+  console.log("id:", id);
   const deletedReview = await prisma.review.deleteMany({
     where: {
       id,

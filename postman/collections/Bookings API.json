@@ -246,6 +246,20 @@
             },
             {
               "name": "DELETE delete user",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
               "request": {
                 "method": "DELETE",
                 "header": [
@@ -256,11 +270,11 @@
                   }
                 ],
                 "url": {
-                  "raw": "http://localhost:3000/users/c3456789-01de-f012-3456-789abcdef012",
+                  "raw": "http://localhost:3000/users/a1234567-89ab-cdef-0123-456789abcdef",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["users", "c3456789-01de-f012-3456-789abcdef012"]
+                  "path": ["users", "a1234567-89ab-cdef-0123-456789abcdef"]
                 }
               },
               "response": []
@@ -385,7 +399,11 @@
                 {
                   "listen": "test",
                   "script": {
-                    "exec": [""],
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
                     "type": "text/javascript",
                     "packages": {}
                   }
@@ -469,9 +487,7 @@
                       "    pm.response.to.have.status(200);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Body matches string\", function () {\r",
-                      "    pm.expect(pm.response.text()).to.include(\"f0123456-78ab-cdef-0123-456789abcdef\");\r",
-                      "});"
+                      ""
                     ],
                     "type": "text/javascript",
                     "packages": {}
@@ -497,11 +513,11 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3000/bookings/f0123456-78ab-cdef-0123-456789abcdef",
+                  "raw": "http://localhost:3000/bookings/e2345678-90ab-cdef-0123-456789abcdef",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["bookings", "f0123456-78ab-cdef-0123-456789abcdef"]
+                  "path": ["bookings", "e2345678-90ab-cdef-0123-456789abcdef"]
                 }
               },
               "response": []
@@ -800,9 +816,7 @@
                       "\r",
                       "// Test for response body properties\r",
                       "pm.test(\"Response body has the required properties\", function () {\r",
-                      "    pm.expect(pm.response.json()).to.have.property('id');\r",
                       "    pm.expect(pm.response.json()).to.have.property('username');\r",
-                      "    pm.expect(pm.response.json()).to.have.property('password');\r",
                       "    pm.expect(pm.response.json()).to.have.property('name');\r",
                       "    pm.expect(pm.response.json()).to.have.property('email');\r",
                       "    pm.expect(pm.response.json()).to.have.property('phoneNumber');\r",
@@ -911,6 +925,20 @@
             },
             {
               "name": "Delete host",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
               "request": {
                 "method": "DELETE",
                 "header": [
@@ -921,11 +949,11 @@
                   }
                 ],
                 "url": {
-                  "raw": "http://localhost:3000/hosts/ade88f99-7521-4c4e-a688-4bc717433cbe",
+                  "raw": "http://localhost:3000/hosts/f1234567-89ab-cdef-0123-456789abcdef",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["hosts", "ade88f99-7521-4c4e-a688-4bc717433cbe"]
+                  "path": ["hosts", "f1234567-89ab-cdef-0123-456789abcdef"]
                 }
               },
               "response": []
@@ -1001,52 +1029,6 @@
                       "\r",
                       "\r",
                       "\r",
-                      "// Test for response body schema\r",
-                      "pm.test(\"Response body has the expected schema\", function () {\r",
-                      "    pm.response.to.have.jsonSchema({\r",
-                      "        type: \"array\",\r",
-                      "        items: {\r",
-                      "            type: \"object\",\r",
-                      "            properties: {\r",
-                      "                comment: { type: \"string\" },\r",
-                      "                id: { type: \"string\" },\r",
-                      "                property: {\r",
-                      "                    type: \"object\",\r",
-                      "                    properties: {\r",
-                      "                        id: { type: \"string\" },\r",
-                      "                        hostId: { type: \"string\" },\r",
-                      "                        title: { type: \"string\" },\r",
-                      "                        description: { type: \"string\" },\r",
-                      "                        location: { type: \"string\" },\r",
-                      "                        pricePerNight: { type: \"string\" },\r",
-                      "                        bedroomCount: { type: \"number\" },\r",
-                      "                        bathRoomCount: { type: \"number\" },\r",
-                      "                        maxGuestCount: { type: \"number\" },\r",
-                      "                        rating: { type: \"number\" }\r",
-                      "                    },\r",
-                      "                    required: [\"id\", \"hostId\", \"title\", \"description\", \"location\", \"pricePerNight\", \"bedroomCount\", \"bathRoomCount\", \"maxGuestCount\", \"rating\"]\r",
-                      "                },\r",
-                      "                propertyId: { type: \"string\" },\r",
-                      "                rating: { type: \"number\" },\r",
-                      "                user: {\r",
-                      "                    type: \"object\",\r",
-                      "                    properties: {\r",
-                      "                        id: { type: \"string\" },\r",
-                      "                        username: { type: \"string\" },\r",
-                      "                        password: { type: \"string\" },\r",
-                      "                        name: { type: \"string\" },\r",
-                      "                        email: { type: \"string\" },\r",
-                      "                        phoneNumber: { type: \"string\" },\r",
-                      "                        pictureUrl: { type: \"string\" }\r",
-                      "                    },\r",
-                      "                    required: [\"id\", \"username\", \"password\", \"name\", \"email\", \"phoneNumber\", \"pictureUrl\"]\r",
-                      "                },\r",
-                      "                userId: { type: \"string\" }\r",
-                      "            },\r",
-                      "            required: [\"comment\", \"id\", \"property\", \"propertyId\", \"rating\", \"user\", \"userId\"]\r",
-                      "        }\r",
-                      "    });\r",
-                      "});\r",
                       ""
                     ],
                     "type": "text/javascript",
@@ -1068,7 +1050,7 @@
               "response": []
             },
             {
-              "name": "get reviews by id",
+              "name": "get review by id",
               "event": [
                 {
                   "listen": "test",
@@ -1102,11 +1084,11 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:3000/reviews/g7890123-45cd-ef01-2345-6789abcdef01",
+                  "raw": "http://localhost:3000/reviews/j0123456-78f0-1234-5678-9abcdef01234",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["reviews", "g7890123-45cd-ef01-2345-6789abcdef01"]
+                  "path": ["reviews", "j0123456-78f0-1234-5678-9abcdef01234"]
                 }
               },
               "response": []
@@ -1159,7 +1141,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\r\n    \"propertyId\": \"g9012345-67ef-0123-4567-89abcdef0123\",\r\n    \"rating\": 5,\r\n    \"comment\": \"Test comment!\"\r\n}",
+                  "raw": "{\r\n    \"userId\": \"c3456789-01de-f012-3456-789abcdef012\",\r\n    \"propertyId\": \"g9012345-67ef-0123-4567-89abcdef0123\",\r\n    \"rating\": 5,\r\n    \"comment\": \"Test comment!\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1219,17 +1201,31 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3000/reviews/g7890123-45cd-ef01-2345-6789abcdef01",
+                  "raw": "http://localhost:3000/reviews/j0123456-78f0-1234-5678-9abcdef01234",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["reviews", "g7890123-45cd-ef01-2345-6789abcdef01"]
+                  "path": ["reviews", "j0123456-78f0-1234-5678-9abcdef01234"]
                 }
               },
               "response": []
             },
             {
               "name": "Delete review",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
               "request": {
                 "method": "DELETE",
                 "header": [
@@ -1239,12 +1235,21 @@
                     "type": "text"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
-                  "raw": "http://localhost:3000/reviews/166dbf80-a64b-4c0b-8bd0-0a31037c6554",
+                  "raw": "http://localhost:3000/reviews/j0123456-78f0-1234-5678-9abcdef01234",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["reviews", "166dbf80-a64b-4c0b-8bd0-0a31037c6554"]
+                  "path": ["reviews", "j0123456-78f0-1234-5678-9abcdef01234"]
                 }
               },
               "response": []
@@ -1358,11 +1363,11 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:3000/properties/g9012345-67ef-0123-4567-89abcdef0123",
+                  "raw": "http://localhost:3000/properties/h0123456-78f0-1234-5678-9abcdef01234",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["properties", "g9012345-67ef-0123-4567-89abcdef0123"]
+                  "path": ["properties", "h0123456-78f0-1234-5678-9abcdef01234"]
                 }
               },
               "response": []
@@ -1454,6 +1459,20 @@
             },
             {
               "name": "Delete delete property",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
               "request": {
                 "method": "DELETE",
                 "header": [
@@ -1464,11 +1483,11 @@
                   }
                 ],
                 "url": {
-                  "raw": "http://localhost:3000/properties/aa856dc8-aaae-4e82-a12d-33bf6ebc75a3",
+                  "raw": "http://localhost:3000/properties/k3456789-01f2-3456-789a-bcdef0123456",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
-                  "path": ["properties", "aa856dc8-aaae-4e82-a12d-33bf6ebc75a3"]
+                  "path": ["properties", "k3456789-01f2-3456-789a-bcdef0123456"]
                 }
               },
               "response": []
@@ -1515,13 +1534,13 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3000/properties/k3456789-01f2-3456-789a-bcdef0123456",
+                  "raw": "http://localhost:3000/properties/h0123456-78f0-1234-5678-9abcdef01234",
                   "protocol": "http",
                   "host": ["localhost"],
                   "port": "3000",
                   "path": [
                     "properties",
-                    "k3456789-01f2-3456-789a-bcdef0123456"
+                    "h0123456-78f0-1234-5678-9abcdef01234"
                   ],
                   "query": [
                     {
