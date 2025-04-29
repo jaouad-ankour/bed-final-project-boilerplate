@@ -49,7 +49,7 @@ router.get(
 router.post("/", authMiddleware, async (req, res, next) => {
   console.log("req", req.body);
   try {
-    const { email, name, password, phoneNumber, pictureUrl, username, id } =
+    const { email, name, password, phoneNumber, pictureUrl, username } =
       req.body;
     const newUser = await createUser(
       email,
@@ -57,8 +57,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
       password,
       phoneNumber,
       pictureUrl,
-      username,
-      id
+      username
     );
     res.status(201).json(newUser);
   } catch (error) {

@@ -18,7 +18,7 @@ const getHosts = async (name) => {
       listings: true,
       name: true,
       phoneNumber: true,
-      pictureUrl: true,
+      profilePicture: true,
       username: true,
     },
   });

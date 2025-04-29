@@ -34,6 +34,7 @@ Sentry.setupExpressErrorHandler(app);
 app.use(function onError(err, req, res, next) {
   console.error("🔐 AUTH ERROR:", err);
   if (err instanceof PrismaClientValidationError) {
+    console.log("istance prismaclient validation error:", err);
     return res
       .status(400)
       .json("Your form is missing the required input fields");

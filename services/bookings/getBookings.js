@@ -20,6 +20,7 @@ const getBookings = async (userId) => {
       property: true,
       propertyId: true,
       totalPrice: true,
+      userId: true,
     },
   });
 };

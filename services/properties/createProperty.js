@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
 const createProperty = async (
-  id,
   bathRoomCount,
   bedroomCount,
   description,
@@ -16,7 +15,6 @@ const createProperty = async (
 
   return prisma.property.create({
     data: {
-      id,
       bathRoomCount,
       bedroomCount,
       description,

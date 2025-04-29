@@ -13,7 +13,8 @@ const getHostById = async (id) => {
       name: true,
       aboutMe: true,
       phoneNumber: true,
-      pictureUrl: true,
+      profilePicture: true,
+      id: true,
     },
   });
 

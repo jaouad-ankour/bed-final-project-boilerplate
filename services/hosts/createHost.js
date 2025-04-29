@@ -1,26 +1,34 @@
 import { PrismaClient } from "@prisma/client";
 
 const createHost = async (
-  id,
-  aboutMe,
-  email,
-  name,
-  phoneNumber,
-  pictureUrl,
   username,
-  password
+  password,
+  name,
+  email,
+  phoneNumber,
+  profilePicture,
+  aboutMe
 ) => {
+  console.log(
+    "ALLE INPUTS",
+    username,
+    password,
+    name,
+    email,
+    phoneNumber,
+    profilePicture,
+    aboutMe
+  );
   const prisma = new PrismaClient();
-
+  const trimmedUserName = username.trim();
   return prisma.host.create({
     data: {
-      id,
       aboutMe,
       email,
       name,
       phoneNumber,
-      pictureUrl,
-      username,
+      profilePicture,
+      username: trimmedUserName,
       password,
     },
   });

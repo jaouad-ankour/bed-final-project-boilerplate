@@ -8,7 +8,7 @@ const updateHost = async (
   name,
   email,
   phoneNumber,
-  pictureUrl,
+  profilePicture,
   aboutMe
 ) => {
   const prisma = new PrismaClient();
@@ -22,7 +22,7 @@ const updateHost = async (
       name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
       aboutMe,
     },
   });

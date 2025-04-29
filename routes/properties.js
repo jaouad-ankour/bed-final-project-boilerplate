@@ -2,11 +2,6 @@ import { Router } from "express";
 import notFoundErrorHandler from "../error/notFoundError.js";
 import authMiddleware from "../middleware/auth.js";
 import NotFoundError from "../error/notFoundError.js";
-import getReviewById from "../services/reviews/getReviewById.js";
-import getReviews from "../services/reviews/getReviews.js";
-import createReview from "../services/reviews/createReview.js";
-import updateReview from "../services/reviews/updateReviewById.js";
-import deleteReviewById from "../services/reviews/deleteReviewById.js";
 import getPropertyById from "../services/properties/getPropertyById.js";
 import getProperties from "../services/properties/getProperties.js";
 import createProperty from "../services/properties/createProperty.js";
@@ -20,6 +15,7 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
+      console.log("propertyId:", id);
       const property = await getPropertyById(id);
 
       res.status(200).json(property);
@@ -60,7 +56,6 @@ router.get(
 router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const {
-      id,
       bathRoomCount,
       bedroomCount,
       description,
@@ -71,8 +66,9 @@ router.post("/", authMiddleware, async (req, res, next) => {
       title,
       hostId,
     } = req.body;
+
+    console.log("req properties:", req.body);
     const newProperty = await createProperty(
-      id,
       bathRoomCount,
       bedroomCount,
       description,

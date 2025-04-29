@@ -50,23 +50,21 @@ router.post("/", authMiddleware, async (req, res, next) => {
   console.log("req", req.body);
   try {
     const {
-      id,
-      name,
       username,
       password,
+      name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
       aboutMe,
     } = req.body;
     const newHost = await createHost(
-      id,
-      name,
       username,
       password,
+      name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
       aboutMe
     );
     res.status(201).json(newHost);
@@ -83,6 +81,7 @@ router.put(
   "/:id",
   authMiddleware,
   async (req, res, next) => {
+    console.log("req");
     try {
       const { id } = req.params;
       const {
@@ -91,7 +90,7 @@ router.put(
         name,
         email,
         phoneNumber,
-        pictureUrl,
+        profilePicture,
         aboutMe,
       } = req.body;
       const updatedHost = await updateHost(
@@ -101,7 +100,7 @@ router.put(
         name,
         email,
         phoneNumber,
-        pictureUrl,
+        profilePicture,
         aboutMe
       );
       res.status(200).json(updatedHost);
