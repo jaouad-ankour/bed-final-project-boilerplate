@@ -46,11 +46,36 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", authMiddleware, async (req, res, next) => {
-  console.log("req", req.body);
+// router.post("/", authMiddleware, async (req, res, next) => {
+//   console.log("req POST=USER", req.body);
+//   try {
+//     const { email, name, password, phoneNumber, pictureUrl, username } =
+//       req.body;
+//     const newUser = await createUser(
+//       email,
+//       name,
+//       password,
+//       phoneNumber,
+//       pictureUrl,
+//       username
+//     );
+//     res.status(201).json(newUser);
+//   } catch (error) {
+//     if (error instanceof NotFoundError) {
+//       return res.status(404).json({ message: "Resource not found" });
+//     }
+//     next(error);
+//   }
+//   notFoundErrorHandler;
+// });
+
+router.post("/", authMiddleware, async (req, res) => {
+  console.log("req POST=USER", req.body);
+
   try {
     const { email, name, password, phoneNumber, pictureUrl, username } =
       req.body;
+
     const newUser = await createUser(
       email,
       name,
@@ -59,14 +84,19 @@ router.post("/", authMiddleware, async (req, res, next) => {
       pictureUrl,
       username
     );
+
     res.status(201).json(newUser);
   } catch (error) {
     if (error instanceof NotFoundError) {
       return res.status(404).json({ message: "Resource not found" });
     }
-    next(error);
+
+    if (error.status) {
+      return res.status(error.status).json({ message: error.message });
+    }
+
+    res.status(500).json({ message: "Internal Server Error" });
   }
-  notFoundErrorHandler;
 });
 
 router.put(
