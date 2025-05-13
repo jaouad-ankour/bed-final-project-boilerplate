@@ -25,17 +25,19 @@
 // export default getProperties;
 
 import { PrismaClient } from "@prisma/client";
+import NotFoundError from "../../error/notFoundError.js"; // optioneel
+
+const prisma = new PrismaClient();
 
 const getProperties = async (location, pricePerNight, amenities) => {
-  const prisma = new PrismaClient();
-
   console.log("params", location, pricePerNight, amenities);
 
-  return prisma.property.findMany({
+  const properties = await prisma.property.findMany({
     where: {
       ...(location && {
         location: {
           contains: location,
+          mode: "insensitive",
         },
       }),
       ...(pricePerNight && {
@@ -69,6 +71,12 @@ const getProperties = async (location, pricePerNight, amenities) => {
       title: true,
     },
   });
+
+  if (!properties || properties.length === 0) {
+    throw new NotFoundError("Properties", location || "all");
+  }
+
+  return properties;
 };
 
 export default getProperties;

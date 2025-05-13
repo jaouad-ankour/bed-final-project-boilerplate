@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import NotFoundError from "../../error/notFoundError.js"; // als je die gebruikt
+
+const prisma = new PrismaClient();
 
 const getHosts = async (name) => {
-  const prisma = new PrismaClient();
-
-  return prisma.host.findMany({
+  const hosts = await prisma.host.findMany({
     where: {
       ...(name && {
         name: {
@@ -22,5 +23,12 @@ const getHosts = async (name) => {
       username: true,
     },
   });
+
+  if (!hosts || hosts.length === 0) {
+    throw new NotFoundError("Host(s)", name || "all");
+  }
+
+  return hosts;
 };
+
 export default getHosts;

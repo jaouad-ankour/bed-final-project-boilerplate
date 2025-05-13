@@ -9,7 +9,7 @@ const getBookingById = async (id) => {
     },
   });
 
-  if (!booking) {
+  if (!booking || booking.length === 0) {
     throw new NotFoundError("Booking", id);
   }
 

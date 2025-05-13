@@ -34,8 +34,9 @@ router.get(
   async (req, res, next) => {
     try {
       const { location, pricePerNight, amenities } = req.query;
+      console.log("req params", req.params);
 
-      console.log("req params", req.query);
+      console.log("req query", req.query);
       const properties = await getProperties(
         location,
         pricePerNight,
